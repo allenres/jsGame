@@ -60,3 +60,11 @@ const buyUpgrade = (id) => {
 }
 
 renderUpgrades();
+
+const pointIncrement = () => {
+    score += 1;
+    updateDisplay();
+    renderUpgrades();
+}
+
+setInterval(pointIncrement, 1000);
