@@ -3,7 +3,8 @@ let pointsPerClick = 1;
 
 const upgrades = [
     {id: 1, name: "Large Watering Can", cost: 3, bonus: 4},
-    {id: 2, name: "Medium Watering Can", cost: 1, bonus: 2}
+    {id: 2, name: "Medium Watering Can", cost: 1, bonus: 2},
+    {id: 3, name: "Garden Hose", cost: 1000, bonus: 100},
 ]
 
 const updateDisplay = () => {
@@ -29,8 +30,8 @@ const renderUpgrades = () => {
 
     upgrades.forEach(el => {
         const upgradeElement = document.createElement("div");
-
         const button = document.createElement("button");
+
         button.textContent = "Buy Upgrade";
         button.onclick = () => buyUpgrade(el.id);
 
@@ -40,13 +41,14 @@ const renderUpgrades = () => {
 
         upgradeElement.innerHTML = `
             <p>${el.name}</p>
-            <p>${el.cost}</p>
-            <p>${el.bonus}</p>`;
+            <p>cost: $${el.cost}</p>
+            <p>Bonus growth: ${el.bonus}+</p>`;
 
         upgradeElement.appendChild(button);
         upgradesSection.appendChild(upgradeElement);
     })
 }
+renderUpgrades();
 
 const buyUpgrade = (id) => {
     const upgrade = upgrades[id - 1];
@@ -58,8 +60,6 @@ const buyUpgrade = (id) => {
         renderUpgrades();
     }  
 }
-
-renderUpgrades();
 
 const pointIncrement = () => {
     score += 1;
