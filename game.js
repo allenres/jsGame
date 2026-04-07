@@ -19,27 +19,32 @@ const clickButton = document.getElementById("click-btn");
 clickButton.addEventListener("click", () => {
     score += pointsPerClick;
     updateDisplay();
+    renderUpgrades();
 });
 
 
 const renderUpgrades = () => {
     const upgradesSection = document.getElementById("upgrades");
-    upgradesSection.innerHTML  = "";
+    upgradesSection.innerHTML = "";
 
     upgrades.forEach(el => {
-        const Button = document.createElement("button");
-        Button.addEventListener('click', buyUpgrade(el.id));
+        const upgradeElement = document.createElement("div");
+
+        const button = document.createElement("button");
+        button.textContent = "Buy Upgrade";
+        button.onclick = () => buyUpgrade(el.id);
 
         if(score < el.cost){
-            Button.setAttribute('disabled', 'true');
+            button.setAttribute('disabled', 'true');
         }
 
-        upgradesSection.innerHTML += `<div>
+        upgradeElement.innerHTML = `
             <p>${el.name}</p>
             <p>${el.cost}</p>
-            <p>${el.bonus}</p> 
-            <button onclick="buyUpgrade(${el.id})">Buy Upgrade</button>
-        </div>`
+            <p>${el.bonus}</p>`;
+
+        upgradeElement.appendChild(button);
+        upgradesSection.appendChild(upgradeElement);
     })
 }
 
@@ -51,7 +56,7 @@ const buyUpgrade = (id) => {
         pointsPerClick += upgrade.bonus;
         updateDisplay();
         renderUpgrades();
-    }
+    }  
 }
 
 renderUpgrades();
