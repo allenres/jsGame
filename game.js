@@ -21,5 +21,18 @@ clickButton.addEventListener("click", () => {
     updateDisplay();
 });
 
-// const uprgadesSection = document.getElementById("upgrades");
-// uprgadesSection.innerHTML += upgrades.forEach(e => `<p>${e.id}</p>`);
+
+const renderUpgrades = () => {
+    const upgradesSection = document.getElementById("upgrades");
+    upgradesSection.innerHTML  = "";
+
+    upgrades.forEach(el => {
+        upgradesSection.innerHTML += `<div><p>${el.name}</p><p>${el.cost}</p><p>${el.bonus}</p> <button onclick="buyUpgrades(${el.id}))"> Buy Upgrade </button></div>`
+    })
+}
+
+const buyUpgrades = (id) => {
+    console.log(id)
+}
+
+renderUpgrades();
