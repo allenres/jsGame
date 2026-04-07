@@ -27,12 +27,24 @@ const renderUpgrades = () => {
     upgradesSection.innerHTML  = "";
 
     upgrades.forEach(el => {
-        upgradesSection.innerHTML += `<div><p>${el.name}</p><p>${el.cost}</p><p>${el.bonus}</p> <button onclick="buyUpgrades(${el.id}))"> Buy Upgrade </button></div>`
+        upgradesSection.innerHTML += `<div>
+            <p>${el.name}</p>
+            <p>${el.cost}</p>
+            <p>${el.bonus}</p> 
+            <button onclick="buyUpgrade(${el.id})">Buy Upgrade</button>
+        </div>`
     })
 }
 
-const buyUpgrades = (id) => {
-    console.log(id)
+const buyUpgrade = (id) => {
+    const upgrade = upgrades[id - 1];
+    // if player can afford
+    if(score >= upgrade.cost) {
+        score -= upgrade.cost;
+        pointsPerClick += upgrade.bonus;
+        updateDisplay();
+        renderUpgrades();
+    }
 }
 
 renderUpgrades();
