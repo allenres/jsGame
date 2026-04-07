@@ -27,6 +27,13 @@ const renderUpgrades = () => {
     upgradesSection.innerHTML  = "";
 
     upgrades.forEach(el => {
+        const Button = document.createElement("button");
+        Button.addEventListener('click', buyUpgrade(el.id));
+
+        if(score < el.cost){
+            Button.setAttribute('disabled', 'true');
+        }
+
         upgradesSection.innerHTML += `<div>
             <p>${el.name}</p>
             <p>${el.cost}</p>
