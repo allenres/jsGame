@@ -3,15 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clicker Game</title>
+    <title>Botanical Clicker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Plant Grower</h1>
-    <p id="score-display">Height: 0</p>
-    <p id="rate-display">Inches per click: 1</p>
-    <button id="click-btn">Click!</button>
-    <h2>Upgrades</h2>
-    <div id="upgrades"></div>
+    <div class="game-container">
+        <main class="growth-stage">
+            <div class="stats-header">
+                <h1 id="score-display">Height (inches): 0</h1>
+                <p id="rate-display">Growth per Click: 1</p>
+            </div>
+
+            <div id="plant-container">
+                <img id="plant-image" src="images/s1.png" alt="Plant">
+            </div>
+
+            <button id="click-btn">Nourish Plant</button>
+        </main>
+
+        <aside class="sidebar">
+            <h2>Garden Shop</h2>
+            <div id="upgrades" class="upgrade-list"></div>
+        </aside>
+    </div>
     <script src="game.js"></script>
 </body>
 </html>

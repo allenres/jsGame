@@ -2,17 +2,31 @@ let score = 0;
 let pointsPerClick = 1;
 
 const upgrades = [
-    {id: 1, name: "Large Watering Can", cost: 3, bonus: 4, timesBought: 0},
-    {id: 2, name: "Medium Watering Can", cost: 1, bonus: 2, timesBought: 0},
-    {id: 3, name: "Garden Hose", cost: 1000, bonus: 100, timesBought: 0},
+    {id: 1, name: "Large Watering Can", cost: 100, bonus: 4, timesBought: 0},
+    {id: 2, name: "Medium Watering Can", cost: 50, bonus: 2, timesBought: 0},
+    {id: 3, name: "Garden Hose", cost: 1000, bonus: 40, timesBought: 0},
 ]
+
+const updatePlantImage = () => {
+    const plantImg = document.getElementById("plant-image");
+    
+    if (score >= 1000) {
+        plantImg.src = "images/s3.png"; 
+    } else if (score >= 100) {
+        plantImg.src = "images/s2.png"; 
+    } else {
+        plantImg.src = "images/s1.png";
+    }
+}
 
 const updateDisplay = () => {
     const scoreElement = document.getElementById("score-display");
     const rateElement = document.getElementById("rate-display")
 
-    scoreElement.textContent = 'Height: ' + score;
-    rateElement.textContent = 'Growth per click: ' + pointsPerClick;
+    scoreElement.textContent = 'Height (inches): ' + score;
+    rateElement.textContent = 'Growth per Click: ' + pointsPerClick;
+
+    updatePlantImage();
 }
 
 const clickButton = document.getElementById("click-btn");
@@ -30,25 +44,30 @@ const renderUpgrades = () => {
 
     upgrades.forEach(el => {
         const upgradeElement = document.createElement("div");
-        const button = document.createElement("button");
+        upgradeElement.className = "upgrade-item";
         
+        if (score < el.cost) {
+            upgradeElement.classList.add("locked");
+        }
 
-        button.textContent = "Buy Upgrade";
+        const button = document.createElement("button");
+        button.textContent = "Purchase Upgrade";
         button.onclick = () => buyUpgrade(el.id);
 
-        if(score < el.cost){
+        if (score < el.cost) {
             button.setAttribute('disabled', 'true');
         }
 
         upgradeElement.innerHTML = `
-            <p>${el.name}</p>
-            <p>cost: $${el.cost}</p>
-            <p>Bonus growth: ${el.bonus}+</p>
-            <p>Times bought: ${el.timesBought}</p>`;
+            <strong>${el.name}</strong>
+            <p class="cost-text">Cost: ${el.cost} inches</p>
+            <p>Bonus Growth: +${el.bonus} per click</p>
+            <p>Times bought: ${el.timesBought}</p>
+        `;
 
         upgradeElement.appendChild(button);
         upgradesSection.appendChild(upgradeElement);
-    })
+    });
 }
 renderUpgrades();
 
@@ -75,5 +94,3 @@ const pointIncrement = () => {
 }
 
 setInterval(pointIncrement, 1000);
-
-

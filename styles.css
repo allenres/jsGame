@@ -1,0 +1,195 @@
+:root {
+    --primary: #2ecc71;
+    --primary-dark: #27ae60;
+    --bg-color: #f0f4f8;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --text-main: #2c3e50;
+    --shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    overflow: hidden; /* Modern apps usually fit the screen */
+}
+
+.game-container {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    height: 100vh;
+}
+
+/* Main Growth Area */
+.growth-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 40px;
+    background: radial-gradient(circle at center, #ffffff 0%, #e2e8f0 100%);
+}
+
+.stats-header h1 {
+    font-size: 4rem;
+    margin: 0;
+    text-align: center;
+    color: var(--primary-dark);
+}
+
+#plant-container {
+    height: 400px;
+    display: flex;
+    align-items: flex-end;
+}
+
+#plant-image {
+    max-height: 100%;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1));
+    transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#click-btn {
+    padding: 20px 60px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 0 var(--primary-dark);
+    transition: all 0.1s;
+}
+
+#click-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 6px 0 var(--primary-dark);
+}
+
+/* Sidebar Upgrades */
+.sidebar {
+    background: var(--card-bg);
+    border-left: 1px solid #e2e8f0;
+    padding: 20px;
+    overflow-y: auto;
+    box-shadow: var(--shadow);
+}
+
+.upgrade-item {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #edf2f7;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: transform 0.2s;
+}
+
+.upgrade-item:hover { transform: scale(1.02); }
+
+.upgrade-item p { margin: 0; font-size: 0.9rem; }
+.upgrade-item .name { font-weight: 600; font-size: 1.1rem; }
+.upgrade-item .cost { color: #e67e22; font-weight: bold; }
+
+.upgrade-item button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.upgrade-item button:disabled {
+    background: #cbd5e0;
+    cursor: not-allowed;
+}
+
+/* Sidebar/Shop Container */
+.sidebar {
+    background: #ffffff;
+    border-left: 2px solid #edf2f7;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    color: #2d3748;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #2ecc71;
+    display: inline-block;
+}
+
+/* Individual Upgrade Cards */
+.upgrade-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.upgrade-item:hover {
+    border-color: #2ecc71;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+}
+
+.upgrade-item strong {
+    font-size: 1.1rem;
+    color: #1a202c;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.upgrade-item p {
+    margin: 2px 0;
+    font-size: 0.9rem;
+    color: #4a5568;
+}
+
+/* Highlighting the Cost */
+.upgrade-item .cost-text {
+    color: #e67e22;
+    font-weight: 600;
+}
+
+/* Button Styling */
+.upgrade-item button {
+    margin-top: 12px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #2ecc71;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.upgrade-item button:hover {
+    background: #27ae60;
+}
+
+.upgrade-item button:disabled {
+    background: #cbd5e0;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* visual feedback for items you can't afford */
+.upgrade-item.locked {
+    opacity: 0.6;
+    background: #f1f5f9;
+}
