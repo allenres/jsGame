@@ -12,7 +12,7 @@ const updateDisplay = () => {
     const rateElement = document.getElementById("rate-display")
 
     scoreElement.textContent = 'Height: ' + score;
-    rateElement.textContent = 'Inches per click: ' + pointsPerClick;
+    rateElement.textContent = 'Growth per click: ' + pointsPerClick;
 }
 
 const clickButton = document.getElementById("click-btn");
@@ -57,6 +57,8 @@ const buyUpgrade = (id) => {
     // if player can afford
     if(score >= upgrade.cost) {
         score -= upgrade.cost;
+        // Scale cost
+        upgrade.cost = upgrade.cost * 2;
         pointsPerClick += upgrade.bonus;
         //Track how many times each upgrade has been purchased and show count
         upgrade.timesBought += 1;
